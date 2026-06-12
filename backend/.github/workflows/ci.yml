@@ -1,0 +1,56 @@
+name: FastAPI CI
+
+on:
+push:
+branches:
+- main
+- develop
+
+pull_request:
+
+jobs:
+test:
+runs-on: ubuntu-latest
+
+```
+services:
+  postgres:
+    image: postgres:15
+    env:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: test_db
+    ports:
+      - 5432:5432
+    options: >-
+      --health-cmd "pg_isready -U postgres"
+      --health-interval 10s
+      --health-timeout 5s
+      --health-retries 5
+
+env:
+  DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
+  SECRET_KEY: test-secret
+  ALGORITHM: HS256
+
+steps:
+  - name: Checkout
+    uses: actions/checkout@v4
+
+  - name: Setup Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: "3.11"
+
+  - name: Install dependencies
+    run: |
+      pip install -r requirements.txt
+
+  - name: Run migrations
+    run: |
+      alembic upgrade head
+
+  - name: Run tests with coverage
+    run: |
+      pytest --cov=backend
+```
