@@ -105,6 +105,7 @@ Login returns:
   "refresh_token": "...",
   "token_type": "bearer"
 }
+```
 
 Access tokens protect private routes.
 
