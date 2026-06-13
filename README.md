@@ -113,7 +113,7 @@ Refresh tokens allow creating new access tokens.
 
 ---
 
-## RBAC Authorization
+# RBAC Authorization
 
 Admin endpoints are protected:
 
@@ -130,16 +130,16 @@ Admin	        200 OK
 
 --- 
 
-## API Endpoints
+# API Endpoints
 
-# Auth
+## Auth
 
 Method	        Endpoint
 POST	        /auth/register
 POST	        /auth/login
 POST	        /auth/refresh
 
-# Tasks
+## Tasks
 Method	        Endpoint
 GET	            /tasks
 GET	            /tasks/{id}
@@ -147,13 +147,13 @@ POST	        /tasks
 PUT	            /tasks/{id}
 DELETE	        /tasks/{id}
 
-# Admin
+## Admin
 Method	        Endpoint
 GET	            /admin/users
 
 ---
 
-## Docker
+# Docker
 
 Start application:
 
@@ -172,7 +172,7 @@ Swagger:
 
 ---
 
-## Database migrations
+# Database migrations
 
 Create migration:
 
@@ -184,18 +184,18 @@ Run migrations:
 
 ---
 
-## Tests
+# Tests
 
 Run:
 
-``` pytest -vv```
+```pytest -vv```
 
 
-Current status:
+## Current status:
 
 12 passed
 
-Tests include:
+## Tests include:
 
 Authentication
 JWT flow
@@ -206,9 +206,9 @@ Admin RBAC
 
 ---
 
-## CI/CD
+# CI/CD
 
-GitHub Actions automatically:
+## GitHub Actions automatically:
 
 installs dependencies
 prepares environment
@@ -218,7 +218,7 @@ Pipeline status is visible at the top of README.
 
 ---
 
-## Features
+# Features
 
 ✔ Clean Architecture
 ✔ Repository Pattern
