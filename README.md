@@ -91,8 +91,7 @@ backend/
 
 └── tests/
 
-
----
+--- 
 
 # Authentication
 
