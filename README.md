@@ -194,9 +194,9 @@ Run:
 
 
 ## Current status:
-
+```
 12 passed
-
+```
 ## Tests include:
 ```
 Authentication
