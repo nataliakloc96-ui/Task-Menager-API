@@ -1,6 +1,6 @@
 # Task Manager API
 
-Backend API napisane w FastAPI.
+![Tests](https://github.com/nataliakloc96-ui/Task-Menager-API/actions/workflows/tests.yml/badge.svg)
 
 ## Technologie
 
