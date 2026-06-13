@@ -119,7 +119,7 @@ Admin endpoints are protected:
 
 Example:
 
-GET /admin/users
+``` GET /admin/users ```
 
 Permissions:
 
@@ -157,7 +157,7 @@ GET	            /admin/users
 
 Start application:
 
-docker compose up --build
+``` docker compose up --build ```
 
 
 Services:
@@ -168,7 +168,7 @@ Redis → port 6379
 
 Swagger:
 
-http://localhost:8000/docs
+``` http://localhost:8000/docs ```
 
 ---
 
@@ -176,11 +176,11 @@ http://localhost:8000/docs
 
 Create migration:
 
-alembic revision --autogenerate -m "message"
+``` alembic revision --autogenerate -m "message" ```
 
 Run migrations:
 
-alembic upgrade head
+``` alembic upgrade head ```
 
 ---
 
@@ -188,7 +188,7 @@ alembic upgrade head
 
 Run:
 
-pytest -vv
+``` pytest -vv```
 
 
 Current status:
