@@ -1,7 +1,7 @@
 import logging
 import sys
 import json
-from datetime import datetime
+from datetime import datetime, UTC
 
 
 class JsonFormatter(logging.Formatter):
@@ -9,7 +9,7 @@ class JsonFormatter(logging.Formatter):
     def format(self, record):
 
         log = {
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
             "level": record.levelname,
             "message": record.getMessage(),
             "module": record.module,
