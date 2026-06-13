@@ -144,19 +144,13 @@ Admin	        200 OK
 
 ## Auth
 ```
-<<<<<<< HEAD
-Method	       Endpoint
-=======
 Method	        Endpoint
->>>>>>> eadbf54 (Add architecture documentation)
 POST	        /auth/register
 POST	        /auth/login
 POST	        /auth/refresh
 ```
-<<<<<<< HEAD
-=======
 
->>>>>>> eadbf54 (Add architecture documentation)
+
 ## Tasks
 ```
 Method	        Endpoint
@@ -166,19 +160,15 @@ POST	          /tasks
 PUT	            /tasks/{id}
 DELETE	        /tasks/{id}
 ```
-<<<<<<< HEAD
-=======
 
->>>>>>> eadbf54 (Add architecture documentation)
+
 ## Admin
 ```
 Method	        Endpoint
 GET	            /admin/users
 ```
-<<<<<<< HEAD
-=======
 
->>>>>>> eadbf54 (Add architecture documentation)
+
 ---
 
 # Docker
@@ -194,10 +184,8 @@ API → port 8000
 PostgreSQL → port 5432
 Redis → port 6379
 ```
-<<<<<<< HEAD
-=======
 
->>>>>>> eadbf54 (Add architecture documentation)
+
 Swagger:
 
 ``` http://localhost:8000/docs ```
@@ -262,8 +250,7 @@ Pipeline status is visible at the top of README.
 ✔ Automated Tests
 ✔ Structured Logging
 ```
-<<<<<<< HEAD
-=======
+
 ---
 
 # What I learned
@@ -307,4 +294,3 @@ During this project I practiced:
 - containerizing applications with Docker
 - managing services with Docker Compose
 - creating CI pipelines with GitHub Actions
->>>>>>> eadbf54 (Add architecture documentation)
