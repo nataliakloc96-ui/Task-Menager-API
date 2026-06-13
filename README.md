@@ -60,7 +60,7 @@ PostgreSQL
 
 # Project structure:
 
-
+```
 backend/
 
 ├── api/
@@ -90,7 +90,7 @@ backend/
 │
 
 └── tests/
-
+```
 --- 
 
 # Authentication
@@ -122,35 +122,37 @@ Example:
 ``` GET /admin/users ```
 
 Permissions:
-
+```
 User	        Result
 Anonymous	    401 Unauthorized
 User	        403 Forbidden
 Admin	        200 OK
-
+```
 --- 
 
 # API Endpoints
 
 ## Auth
-
-Method	        Endpoint
+```
+Method	       Endpoint
 POST	        /auth/register
 POST	        /auth/login
 POST	        /auth/refresh
-
+```
 ## Tasks
+```
 Method	        Endpoint
 GET	            /tasks
 GET	            /tasks/{id}
-POST	        /tasks
+POST	          /tasks
 PUT	            /tasks/{id}
 DELETE	        /tasks/{id}
-
+```
 ## Admin
+```
 Method	        Endpoint
 GET	            /admin/users
-
+```
 ---
 
 # Docker
@@ -161,11 +163,11 @@ Start application:
 
 
 Services:
-
+```
 API → port 8000
 PostgreSQL → port 5432
 Redis → port 6379
-
+```
 Swagger:
 
 ``` http://localhost:8000/docs ```
@@ -196,30 +198,30 @@ Run:
 12 passed
 
 ## Tests include:
-
+```
 Authentication
 JWT flow
 Refresh tokens
 CRUD operations
 Permissions
 Admin RBAC
-
+```
 ---
 
 # CI/CD
 
 ## GitHub Actions automatically:
-
+```
 installs dependencies
 prepares environment
 runs tests
-
+```
 Pipeline status is visible at the top of README.
 
 ---
 
 # Features
-
+```
 ✔ Clean Architecture
 ✔ Repository Pattern
 ✔ Dependency Injection
@@ -229,3 +231,4 @@ Pipeline status is visible at the top of README.
 ✔ CI Pipeline
 ✔ Automated Tests
 ✔ Structured Logging
+```
