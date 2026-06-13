@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 
 from backend.core.database import Base
 
-from datetime import datetime
+from datetime import datetime, UTC
 
 from sqlalchemy import (
     Column,
@@ -22,7 +22,7 @@ class Task(Base):
     
     created_at = Column(
         DateTime,
-        default=datetime.utcnow
+        default=datetime.now(UTC)
     )
 
     due_date = Column(
