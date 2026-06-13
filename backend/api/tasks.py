@@ -80,9 +80,19 @@ def create_task(task: TaskCreate, db: Session = Depends(get_db), current_user: s
 
 @router.get("/{task_id}", response_model = TaskOut)
 def get_task(task_id: int, db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
-    task = db.query(Task).filter(Task.id == task_id, Task.owner_id == current_user.id).first()
-    if not task: 
-        raise HTTPException(status_code=404, detail="Task not found")
+
+    task = service.get_task(
+        db,
+        task_id,
+        current_user.id
+    )
+
+    if not task:
+        raise HTTPException(
+            status_code=404,
+            detail="Task not found"
+        )
+    
     return task
 
 @router.delete("/{task_id}")
@@ -92,12 +102,7 @@ def delete_task(task_id: int, db: Session = Depends(get_db), current_user: str =
         raise HTTPException(status_code=404, detail="Task not found")
     return {"message": "deleted"}
 
-@router.get("/admin/users")
-def get_users(
-    db: Session = Depends(get_db),
-    current_user = Depends(get_current_user)
-):
-    return service.get_all_users(db)
+
 
 @router.put("/{task_id}", response_model=TaskOut)
 def update_task(

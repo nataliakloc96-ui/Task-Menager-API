@@ -8,11 +8,14 @@ class TaskService:
     def __init__(self):
         self.repo = TaskRepository()
 
-    def get_tasks(self, db: Session):
-        return self.repo.get_all(db)
+    def get_tasks(self, db: Session, user_id: int):
+        return self.repo.get_all(
+            db,
+            user_id
+        )
     
-    def get_task(self, db: Session, task_id: int):
-        return self.repo.get(db, task_id)
+    def get_task(self, db: Session, task_id: int, user_id: int):
+        return self.repo.get(db, task_id, user_id)
     
     def create_task(self, db: Session, task: TaskCreate):
         return self.repo.create(db, task)

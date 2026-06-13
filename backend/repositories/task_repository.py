@@ -4,11 +4,15 @@ from backend.schemas.task import TaskCreate, TaskUpdate
 
 class TaskRepository:
 
-    def get_all(self, db: Session):
-        return db.query(Task).all()
+    def get_all(self, db: Session, user_id: int):
+        return (
+            db.query(Task)
+            .filter(Task.owner_id == user_id)
+            .all()
+        )
     
-    def get(self, db:Session, task_id:int):
-        return db.query(Task).filter(Task.id == task_id).first()
+    def get(self, db:Session, task_id:int, user_id: int):
+        return db.query(Task).filter(Task.id == task_id, Task.owner_id == user_id).first()
     
     def create(self, db: Session, task: TaskCreate):
         db_task = Task(**task.model_dump())
