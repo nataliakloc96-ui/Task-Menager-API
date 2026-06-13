@@ -1,5 +1,9 @@
 name: Tests
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+
 on:
   push:
     branches:
@@ -59,6 +63,7 @@ jobs:
 
       - name: Run tests
         env:
+          PYTHONPATH: .
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/tasks_db
           SECRET_KEY: github-secret
           REDIS_HOST: localhost
