@@ -330,4 +330,7 @@ Current status:
 
 ## Author
 
-Created as a Data Engineering portfolio project.
+Natalia Kurek
+
+LinkedIn:
+[www.linkedin.com/in/natalia-kurek-b46660308](http://www.linkedin.com/in/natalia-kurek-b46660308)
