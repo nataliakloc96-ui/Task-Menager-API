@@ -1,7 +1,7 @@
 # System Architecture
 
 
-```text
+```
                  USER
                   |
                   |
