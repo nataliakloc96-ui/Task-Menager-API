@@ -166,17 +166,17 @@ Admin	        200 OK
 # API Endpoints
 
 ## Auth
-```
+
 | Method | Endpoint |
 |---|---|
 | POST | /auth/register |
 | POST | /auth/login |
 | POST | /auth/refresh |
-```
+
 
 
 ## Tasks
-```
+
 | Method | Endpoint |
 |---|---|
 | GET | /tasks |
@@ -184,15 +184,15 @@ Admin	        200 OK
 | POST | /tasks |
 | PUT | /tasks/{id} |
 | DELETE | /tasks/{id} |
-```
+
 
 
 ## Admin
-```
+
 | Method | Endpoint |
 |---|---|
 | GET | /admin/users |
-```
+
 
 
 ---
