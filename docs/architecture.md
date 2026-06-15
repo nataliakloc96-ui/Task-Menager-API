@@ -1,25 +1,50 @@
-# Architecture
+# System Architecture
 
-```mermaid
 
-flowchart TD
+```text
+                 USER
+                  |
+                  |
+                  v
 
-    A[Client / Swagger] --> B[FastAPI API Layer]
+             FastAPI REST API
+                  |
+                  |
+        ---------------------
+        |                   |
+        v                   v
 
-    B --> C[Authentication Middleware]
+ Authentication        Task Service
+        |
+        v
 
-    C --> D[Service Layer]
+ Repository Layer
 
-    D --> E[Repository Layer]
+        |
+        v
 
-    E --> F[(PostgreSQL)]
+    PostgreSQL
+    tasks_db
 
-    C --> G[(Redis)]
+        |
+        |
+        v
 
-    B --> H[JSON Logger]
+ Apache Airflow Scheduler
 
-    I[GitHub Actions CI] --> J[Pytest]
+        |
+        |
+        v
 
-    J --> B
+     ETL Pipeline
 
-```
+ Extract
+    |
+ Transform
+    |
+ Load
+
+        |
+        v
+
+ Analytics Tables

@@ -1,12 +1,31 @@
-# Task Manager API
+# Task Manager API & ETL Data Platform
 
 ![Tests](https://github.com/nataliakloc96-ui/Task-Menager-API/actions/workflows/tests.yml/badge.svg)
 
-Production-style REST API for task management built with FastAPI.
+Production-like backend and data engineering project built with FastAPI, PostgreSQL, Docker and Apache Airflow.
 
-The project demonstrates backend architecture, authentication, authorization, testing, Docker environment and CI pipeline.
+The application allows users to manage tasks through REST API and processes task data using an automated ETL pipeline.
 
 ---
+
+## Project Status
+
+✅ Backend completed  
+✅ Dockerized infrastructure  
+✅ Airflow ETL pipeline implemented  
+✅ Automated tests passing  
+✅ CI pipeline enabled
+
+## ETL Data Flow
+
+1. Airflow triggers DAG
+2. Extract task data from PostgreSQL
+3. Transform raw records using Pandas
+4. Calculate metrics
+5. Load analytics data back into PostgreSQL
+
+---
+
 
 ## Tech Stack
 
@@ -16,6 +35,7 @@ The project demonstrates backend architecture, authentication, authorization, te
 - SQLAlchemy ORM
 - Pydantic v2
 - PostgreSQL
+- JWT Authentication
 - Redis
 - Alembic
 
@@ -27,9 +47,16 @@ The project demonstrates backend architecture, authentication, authorization, te
 - Role Based Access Control (RBAC)
 - User permissions
 
+### Data Engineering
+- Apache Airflow
+- ETL Pipeline
+- Pandas
+- SQL Analytics
+
 ### DevOps & Quality
 - Docker
 - Docker Compose
+- Redis
 - GitHub Actions CI
 - Pytest
 - Structured JSON logging
@@ -41,20 +68,26 @@ The project demonstrates backend architecture, authentication, authorization, te
 
 The project follows a layered architecture pattern with separation of responsibilities.
 
-```text
-Client
-  |
-  v
-FastAPI Router
-  |
-  v
-Service Layer
-  |
-  v
-Repository Layer
-  |
-  v
-PostgreSQL
+```
+                  Client
+                    |
+                    v
+              FastAPI API
+                    |
+                    v
+              PostgreSQL
+                    |
+                    |
+        +-----------+------------+
+        |                        |
+        v                        v
+ Application data          Airflow DAG
+                                  |
+                                  v
+                            ETL Pipeline
+                                  |
+                                  v
+                         Analytics Tables
 ```
 
 Additional components:
@@ -71,35 +104,25 @@ Additional components:
 # Project structure:
 
 ```
-backend/
+Task-Manager-API/
 
-├── api/
-│ ├── auth.py
-│ ├── tasks.py
-│ └── admin.py
+├── backend/
+│   ├── api/
+│   ├── core/
+│   ├── models/
+│   ├── repositories/
+│   ├── services/
+│   └── tests/
 │
-
-├── core/
-│ ├── database.py
-│ ├── security.py
-│ ├── redis.py
-│ └── logger.py
+├── analytics/
+│   └── etl/
 │
-
-├── middleware/
-│ └── logging.py
+├── airflow/
+│   └── dags/
 │
-
-├── models/
-│
-
-├── repositories/
-│
-
-├── services/
-│
-
-└── tests/
+├── docker-compose.yml
+├── Dockerfile
+└── README.md
 ```
 --- 
 
@@ -144,153 +167,167 @@ Admin	        200 OK
 
 ## Auth
 ```
-Method	        Endpoint
-POST	        /auth/register
-POST	        /auth/login
-POST	        /auth/refresh
+| Method | Endpoint |
+|---|---|
+| POST | /auth/register |
+| POST | /auth/login |
+| POST | /auth/refresh |
 ```
 
 
 ## Tasks
 ```
-Method	        Endpoint
-GET	            /tasks
-GET	            /tasks/{id}
-POST	          /tasks
-PUT	            /tasks/{id}
-DELETE	        /tasks/{id}
+| Method | Endpoint |
+|---|---|
+| GET | /tasks |
+| GET | /tasks/{id} |
+| POST | /tasks |
+| PUT | /tasks/{id} |
+| DELETE | /tasks/{id} |
 ```
 
 
 ## Admin
 ```
-Method	        Endpoint
-GET	            /admin/users
+| Method | Endpoint |
+|---|---|
+| GET | /admin/users |
 ```
 
 
 ---
 
-# Docker
+## Features
 
-Start application:
+### API
 
-``` docker compose up --build ```
+- User registration
+- JWT authentication
+- CRUD operations for tasks
+- Admin authorization
+- Error handling
+- Logging
 
+### Database
+
+- PostgreSQL relational database
+- SQLAlchemy ORM
+- Repository pattern
+
+### ETL Pipeline
+
+Airflow automatically runs a data pipeline:
+
+Extract:
+- reads task data from PostgreSQL
+
+Transform:
+- calculates task metrics
+
+Load:
+- saves analytics results
+
+
+---
+
+## Docker services
+
+Project runs using Docker Compose:
 
 Services:
-```
-API → port 8000
-PostgreSQL → port 5432
-Redis → port 6379
-```
 
+- FastAPI API
+- PostgreSQL database
+- Redis
+- Apache Airflow
 
-Swagger:
-
-``` http://localhost:8000/docs ```
-
----
-
-# Database migrations
-
-Create migration:
-
-``` alembic revision --autogenerate -m "message" ```
-
-Run migrations:
-
-``` alembic upgrade head ```
-
----
-
-# Tests
 
 Run:
 
-```pytest -vv```
+```bash
+docker compose up -d
+```
+Check containers:
 
+```bash
+docker compose ps
+```
+Expected:
 
-## Current status:
-```
-12 passed
-```
-## Tests include:
-```
-Authentication
-JWT flow
-Refresh tokens
-CRUD operations
-Permissions
-Admin RBAC
-```
----
-
-# CI/CD
-
-## GitHub Actions automatically:
-```
-installs dependencies
-prepares environment
-runs tests
-```
-Pipeline status is visible at the top of README.
+- api running
+- postgres healthy
+- redis running
+- airflow running
 
 ---
 
-# Features
+## API Documentation
+
+Swagger:
+
 ```
-✔ Clean Architecture
-✔ Repository Pattern
-✔ Dependency Injection
-✔ JWT Security
-✔ RBAC
-✔ Dockerized Environment
-✔ CI Pipeline
-✔ Automated Tests
-✔ Structured Logging
+http://localhost:8000/docs
 ```
 
 ---
 
-# What I learned
+## Airflow
 
-During this project I practiced:
+UI:
 
-## Backend Development
-
-- designing REST API with FastAPI
-- creating layered backend architecture
-- separating API, service and repository logic
-- working with dependency injection
+```
+http://localhost:8080
+```
 
 
-## Database
+Example DAG:
 
-- designing relational database models
-- using SQLAlchemy ORM
-- managing schema changes with Alembic migrations
+```
+task_metrics_etl
+```
 
+---
 
-## Security
-
-- implementing JWT authentication
-- access and refresh token flow
-- password hashing
-- role based access control
-- protecting user resources
+## Tests
 
 
-## Testing
+Run:
 
-- writing automated tests with pytest
-- mocking external dependencies
-- testing authentication flows
-- testing permissions
+```bash
+pytest
+```
+
+Current status:
+
+```
+12 tests passed
+```
+
+---
+
+## Screenshots
+
+### Swagger API
+
+![Swagger](docs/images/swagger.png)
 
 
-## DevOps
+### Airflow DAG
 
-- containerizing applications with Docker
-- managing services with Docker Compose
-- creating CI pipelines with GitHub Actions
+![Airflow](docs/images/airflow.png)
+
+---
+
+## Future Improvements
+
+- Kafka event streaming
+- Data warehouse integration
+- dbt transformations
+- Monitoring with Prometheus/Grafana
+- Kubernetes deployment
+
+---
+
+## Author
+
+Created as a Data Engineering portfolio project.
