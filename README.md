@@ -309,7 +309,7 @@ Current status:
 
 ### Swagger API
 
-![Swagger](docs/images/swagger.png)
+![Swagger](docs/images/swagger_api.png)
 
 
 ### Airflow DAG
